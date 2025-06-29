@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
                       message: 'Background location in progress',
                       icon: '@mipmap/ic_launcher',
                     );
-                    //await BackgroundLocation.setAndroidConfiguration(1000);
+                    await BackgroundLocation.setConfiguration(60000);
                     await BackgroundLocation.startLocationService(
                         distanceFilter: 20);
                     BackgroundLocation.getLocationUpdates((location) {
@@ -63,6 +63,14 @@ class _MyAppState extends State<MyApp> {
                                 location.time!.toInt())
                             .toString();
                       });
+                      
+                      // Print lat/long every 15 seconds
+                      print('=== LOCATION UPDATE ===');
+                      print('Latitude:  ${location.latitude}');
+                      print('Longitude: ${location.longitude}');
+                      print('Time: ${DateTime.fromMillisecondsSinceEpoch(location.time!.toInt())}');
+                      print('======================');
+                      
                       print('''\n
                         Latitude:  $latitude
                         Longitude: $longitude

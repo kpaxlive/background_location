@@ -37,12 +37,10 @@ class BackgroundLocation {
     }
   }
 
-  static Future<dynamic> setAndroidConfiguration(int interval) async {
-    if (Platform.isAndroid) {
-      return await _channel.invokeMethod('set_configuration', <String, dynamic>{
-        'interval': interval.toString(),
-      });
-    }
+  static Future<dynamic> setConfiguration(int interval) async {
+    return await _channel.invokeMethod('set_configuration', <String, dynamic>{
+      'interval': interval.toString(),
+    });
   }
 
   /// Get the current location once.

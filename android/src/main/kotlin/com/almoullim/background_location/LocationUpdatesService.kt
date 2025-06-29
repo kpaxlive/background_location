@@ -217,6 +217,11 @@ class LocationUpdatesService : Service() {
 
     private fun onNewLocation(location: Location) {
         mLocation = location
+        
+        // Print lat/long to console every 15 seconds
+        Log.d(TAG, "Location Update - Lat: ${location.latitude}, Long: ${location.longitude}")
+        println("Location Update - Lat: ${location.latitude}, Long: ${location.longitude}")
+        
         val intent = Intent(ACTION_BROADCAST)
         intent.putExtra(EXTRA_LOCATION, location)
         LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
